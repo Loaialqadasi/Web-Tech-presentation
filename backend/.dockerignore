@@ -1,0 +1,13 @@
+# Docker build ignores — keeps image small + prevents secrets from leaking
+.git
+.gitignore
+.env
+.env.local
+.env.*.local
+*.md
+!composer.json
+!composer.lock
+.vscode
+.idea
+.DS_Store
+Thumbs.db

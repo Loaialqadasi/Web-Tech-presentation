@@ -1,0 +1,14 @@
+# Apache rewrite rules for Slim 4 (front-controller pattern).
+# Place this file at the project root OR in the public/ folder depending on host.
+
+RewriteEngine On
+
+# Redirect everything that is NOT a real file/directory to public/index.php
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^ index.php [QSA,L]
+
+# CORS headers (mirror Express config)
+Header set Access-Control-Allow-Origin "*"
+Header set Access-Control-Allow-Methods "GET, POST, PUT, DELETE, OPTIONS"
+Header set Access-Control-Allow-Headers "Content-Type, Authorization"

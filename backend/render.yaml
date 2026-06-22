@@ -1,0 +1,44 @@
+# =============================================================================
+# Render Blueprint — UniEvent PHP Slim 4 Backend
+# =============================================================================
+# One-click deploy to Render: in your Render dashboard click "New → Blueprint"
+# and point to this file (in the `backend/` folder).
+#
+# After deploying, set these environment variables in the Render UI:
+#   DB_HOST, DB_PORT, DB_NAME, DB_USER, DB_PASS, DB_CHARSET
+#   JWT_SECRET  (generate a long random string!)
+#   APP_ENV=production
+#   APP_DEBUG=false
+# =============================================================================
+
+services:
+  - type: web
+    name: unievent-php-backend
+    runtime: docker
+    plan: free
+    region: singapore          # closest to Malaysia
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    healthCheckPath: /api/health
+    autoDeploy: true
+    envVars:
+      - key: APP_ENV
+        value: production
+      - key: APP_DEBUG
+        value: "false"
+      - key: DB_HOST
+        sync: false            # set in Render UI
+      - key: DB_PORT
+        value: "4000"          # TiDB Cloud default
+      - key: DB_NAME
+        sync: false
+      - key: DB_USER
+        sync: false
+      - key: DB_PASS
+        sync: false
+      - key: DB_CHARSET
+        value: utf8mb4
+      - key: JWT_SECRET
+        sync: false            # set in Render UI (long random string!)
+      - key: JWT_EXPIRES_HOURS
+        value: "24"
